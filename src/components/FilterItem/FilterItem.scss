@@ -1,0 +1,40 @@
+.filter__item {
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &__name {
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    color: #5ca5a5;
+    background-color: #eef6f6;
+    border-radius: 4px 0 0 4px;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #5ca5a5;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0 4px 4px 0;
+  }
+  &:hover &__btn {
+    background-color: #2b3939;
+  }
+}

@@ -1,0 +1,35 @@
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 20px 20px;
+  background: #fff;
+  min-height: 70px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
+  transform: translateY(50%);
+
+  @media screen and (min-width: 576px) {
+    padding: 20px 40px;
+  }
+  &__items {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  &__btn {
+    color: #7c8f8f;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: -0.1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+    &:hover {
+      color: #5ca5a5;
+      text-decoration: underline;
+    }
+  }
+}

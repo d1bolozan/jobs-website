@@ -1,0 +1,11 @@
+.jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  &:first-child{
+    margin-top: 56px;
+  }
+  @media (min-width: 576px) {
+    gap: 24px;
+  }
+}
