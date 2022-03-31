@@ -1,82 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "../../util/Loader/Loader";
 import Filter from "../Filter/Filter";
 import List from "../List/List";
 import "./App.scss";
 
 const App = () => {
-  const [jobs, setJobs] = useState([
-    {
-      id: 1,
-      company: "Photosnap",
-      logo: "./images/photosnap.svg",
-      new: true,
-      featured: true,
-      position: "Senior Frontend Developer",
-      role: "Frontend",
-      level: "Senior",
-      postedAt: "1d ago",
-      contract: "Full Time",
-      location: "USA Only",
-      languages: ["HTML", "CSS", "JavaScript"],
-      tools: [],
-    },
-    {
-      id: 2,
-      company: "Manage",
-      logo: "./images/manage.svg",
-      new: true,
-      featured: true,
-      position: "Fullstack Developer",
-      role: "Fullstack",
-      level: "Midweight",
-      postedAt: "1d ago",
-      contract: "Part Time",
-      location: "Remote",
-      languages: ["Python"],
-      tools: ["React"],
-    },
-    {
-      id: 3,
-      company: "Account",
-      logo: "./images/account.svg",
-      new: true,
-      featured: false,
-      position: "Junior Frontend Developer",
-      role: "Frontend",
-      level: "Junior",
-      postedAt: "2d ago",
-      contract: "Part Time",
-      location: "USA Only",
-      languages: ["JavaScript"],
-      tools: ["React", "Sass"],
-    },
-    {
-      id: 4,
-      company: "MyHome",
-      logo: "./images/myhome.svg",
-      new: false,
-      featured: false,
-      position: "Junior Frontend Developer",
-      role: "Frontend",
-      level: "Junior",
-      postedAt: "5d ago",
-      contract: "Contract",
-      location: "USA Only",
-      languages: ["CSS", "JavaScript"],
-      tools: [],
-    },
-  ]);
+  const [jobs, setJobs] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [isFilter, setIsFilter] = useState(false);
+  const [isLoading, setIsLoading] = useState(null);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    return fetch("./data.json")
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        setIsLoading((prevState) => !prevState);
+        return setJobs(jsonResponse);
+      });
+  };
+
+  const filterItems = (jobs, tag) => {
+    return jobs.filter((job) => {
+      return (
+        job.languages.indexOf(tag) !== -1 ||
+        job.tools.indexOf(tag) !== -1 ||
+        job.role === tag ||
+        job.level === tag
+      );
+    });
+  };
+
+  const addItemToFilter = (value) => {
+    if (filter.indexOf(value) > -1) {
+      return;
+    }
+    setFilter((prevState) => [...prevState, value]);
+    setJobs((prevState) => filterItems(prevState, value));
+    if (!isFilter) {
+      setIsFilter(true);
+    }
+  };
+
+  const clearFilterItems = () => {
+    setFilter([]);
+    setIsFilter((prevState) => !prevState);
+    fetchData();
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
       <header className="header">
         <div className="container">
-          <Filter />
+          {isFilter && <Filter items={filter} onClear={clearFilterItems} />}
         </div>
       </header>
       <main className="main">
         <div className="container">
-          <List jobs={jobs} isFilter={true}/>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <List jobs={jobs} isFilter={isFilter} onAdd={addItemToFilter} />
+          )}
         </div>
       </main>
       <footer className="footer"></footer>

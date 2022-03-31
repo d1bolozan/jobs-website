@@ -5,6 +5,10 @@ const ListItem = (props) => {
 
   const categories = [role, level, ...tools, ...languages];
 
+  const handleClick = (event) => {
+    props.onAdd(event.target.innerText);
+  };
+
   return (
     <div className={["job", props.job.featured ? "job--featured" : ""].join(" ")}>
       <div className="job__info">
@@ -32,7 +36,7 @@ const ListItem = (props) => {
       <div className="job__categories">
         {categories.map((category, index) => {
           return (
-            <div className="job__category" key={index}>
+            <div className="job__category" key={index} onClick={handleClick}>
               {category}
             </div>
           );
