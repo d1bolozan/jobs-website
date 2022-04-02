@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     setJobs(data.filter(filterCallback));
-    setIsLoading(false);
+    setIsLoading(!isLoading);
   }, [filters]);
 
   const filterCallback = ({ role, level, languages, tools }) => {
@@ -28,15 +28,17 @@ const App = () => {
 
   const clearFilterItems = () => {
     setFilters([]);
+    setIsLoading(!isLoading);
   };
 
   const deleteItemFromFilter = (remove) => {
+    setIsLoading(!isLoading);
     setFilters(filters.filter((item) => item !== remove));
   };
 
   const addItemToFilter = (item) => {
-    setIsLoading(!isLoading);
     if (filters.includes(item)) return;
+    setIsLoading(!isLoading);
     setFilters([...filters, item]);
   };
 
