@@ -17,13 +17,11 @@ Users should be able to:
 - Filter job listings based on the categories
 
 ### Screenshot
+[Mobile]()
+<img src="./mobile_view.png" width="450" height="800"/>
 
-![Mobile]
-<img src="./mobile_view.png" width="250" height="400"/>
-
-![Desktop]
-<img src="./pc_view.png" width="250" height="400"/>
-
+[Desktop]()
+<img src="./pc_view.png" width="450" height="800"/>
 ### Links
 
 - Solution URL: [Code](https://github.com/d1bolozan/jobs-website)
