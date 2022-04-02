@@ -33,6 +33,12 @@
     cursor: pointer;
     transition: 0.3s;
     border-radius: 0 4px 4px 0;
+    & svg {
+      pointer-events: none;
+      & path {
+        pointer-events: none;
+      }
+    }
   }
   &:hover &__btn {
     background-color: #2b3939;

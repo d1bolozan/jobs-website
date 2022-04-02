@@ -2,10 +2,14 @@ import React from "react";
 import "./FilterItem.scss";
 
 const FilterItem = (props) => {
+  const handleDeleteButton = (event) => {
+    props.onDelete(props.name);
+  };
+
   return (
     <div className="filter__item item">
       <span className="item__name">{props.name}</span>
-      <span className="item__btn">
+      <span className="item__btn" onClick={handleDeleteButton}>
         <svg
           width="14"
           height="14"

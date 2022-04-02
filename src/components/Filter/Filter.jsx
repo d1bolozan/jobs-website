@@ -9,8 +9,8 @@ const Filter = (props) => {
   return (
     <div className="filter">
       <div className="filter__items">
-        {props.items.map((item, index) => (
-          <FilterItem key={`${index}-${item}`} name={item} />
+        {props.items.map((item) => (
+          <FilterItem key={item} name={item} onDelete={props.onDelete}/>
         ))}
       </div>
       <div className="filter__btn" onClick={handleClearButton}>

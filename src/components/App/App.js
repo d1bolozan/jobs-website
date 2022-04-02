@@ -2,61 +2,55 @@ import { useEffect, useState } from "react";
 import Loader from "../../util/Loader/Loader";
 import Filter from "../Filter/Filter";
 import List from "../List/List";
+import data from "../../data/data.json";
 import "./App.scss";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
-  const [filter, setFilter] = useState([]);
-  const [isFilter, setIsFilter] = useState(false);
-  const [isLoading, setIsLoading] = useState(null);
+  const [filters, setFilters] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    return fetch("./data.json")
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        setIsLoading((prevState) => !prevState);
-        return setJobs(jsonResponse);
-      });
-  };
+  useEffect(() => {
+    setJobs(data.filter(filterCallback));
+    setIsLoading(false);
+  }, [filters]);
 
-  const filterItems = (jobs, tag) => {
-    return jobs.filter((job) => {
-      return (
-        job.languages.indexOf(tag) !== -1 ||
-        job.tools.indexOf(tag) !== -1 ||
-        job.role === tag ||
-        job.level === tag
-      );
-    });
-  };
+  const filterCallback = ({ role, level, languages, tools }) => {
+    if (filters.length === 0) return true;
 
-  const addItemToFilter = (value) => {
-    if (filter.indexOf(value) > -1) {
-      return;
-    }
-    setFilter((prevState) => [...prevState, value]);
-    setJobs((prevState) => filterItems(prevState, value));
-    if (!isFilter) {
-      setIsFilter(true);
-    }
+    const temp = [role, level];
+
+    if (languages) temp.push(...languages);
+    if (tools) temp.push(...tools);
+
+    return filters.every((tag) => temp.includes(tag));
   };
 
   const clearFilterItems = () => {
-    setFilter([]);
-    setIsFilter((prevState) => !prevState);
-    fetchData();
+    setFilters([]);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const deleteItemFromFilter = (remove) => {
+    setFilters(filters.filter((item) => item !== remove));
+  };
+
+  const addItemToFilter = (item) => {
+    setIsLoading(!isLoading);
+    if (filters.includes(item)) return;
+    setFilters([...filters, item]);
+  };
 
   return (
     <div className="App">
       <header className="header">
         <div className="container">
-          {isFilter && <Filter items={filter} onClear={clearFilterItems} />}
+          {filters.length > 0 && (
+            <Filter
+              items={filters}
+              onClear={clearFilterItems}
+              onDelete={deleteItemFromFilter}
+            />
+          )}
         </div>
       </header>
       <main className="main">
@@ -64,7 +58,11 @@ const App = () => {
           {isLoading ? (
             <Loader />
           ) : (
-            <List jobs={jobs} isFilter={isFilter} onAdd={addItemToFilter} />
+            <List
+              isFilter={filters.length > 0}
+              jobs={jobs}
+              onAdd={addItemToFilter}
+            />
           )}
         </div>
       </main>
