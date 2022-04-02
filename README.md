@@ -18,10 +18,10 @@ Users should be able to:
 
 ### Screenshot
 
-![Mobile](./mobile_view.png).
+![Mobile]
 <img src="./mobile_view.png" width="250" height="400"/>
 
-![Desktop](./pc_view.png).
+![Desktop]
 <img src="./pc_view.png" width="250" height="400"/>
 
 ### Links
