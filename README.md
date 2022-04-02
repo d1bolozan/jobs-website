@@ -18,13 +18,13 @@ Users should be able to:
 
 ### Screenshot
 
-[Mobile](./mobile_view.png)
-[Desktop](./pc_view.png)
+![Mobile](./mobile_view.png)
+![Desktop](./pc_view.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/d1bolozan/jobs-website)
-- Live Site URL: [Add live site URL here](https://jobs-website-dusky.vercel.app/)
+- Solution URL: [Code](https://github.com/d1bolozan/jobs-website)
+- Live Site URL: [Jobs-website](https://jobs-website-dusky.vercel.app/)
 
 ### Built with
 
