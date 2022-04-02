@@ -18,8 +18,8 @@ Users should be able to:
 
 ### Screenshot
 
-![Mobile](./mobile_view.png)
-![Desktop](./pc_view.png)
+![Mobile](./mobile_view.png =250x400).
+![Desktop](./pc_view.png =250x400).
 
 ### Links
 
