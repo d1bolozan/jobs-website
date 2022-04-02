@@ -1,6 +1,6 @@
 # Frontend Mentor - Job listings with filtering solution
 
-This is a solution to the [Job listings with filtering challenge on Frontend Mentor]
+This is a solution to the [Job listings with filtering challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 ## Table of contents
 
 - [The challenge](#the-challenge)
@@ -17,11 +17,9 @@ Users should be able to:
 - Filter job listings based on the categories
 
 ### Screenshot
-[Mobile]()
-<img src="./mobile_view.png" width="450" height="800"/>
+[Mobile](./mobile_view.png)
 
-[Desktop]()
-<img src="./pc_view.png" width="450" height="800"/>
+[Desktop](./pc_view.png)
 ### Links
 
 - Solution URL: [Code](https://github.com/d1bolozan/jobs-website)
